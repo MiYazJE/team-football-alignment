@@ -1,4 +1,6 @@
 
+const token = '326001fac221688be5318ae0879214e4f9d54b63dad155e82faa4c0848ff9a5c';
+
 module.exports.createDB = (req, res) => {
 
     const execSQL = require('exec-sql');
@@ -14,4 +16,13 @@ module.exports.createDB = (req, res) => {
         res.send('<h1>DB Football created!</h1>');
     });
 
+}
+
+module.exports.insertIntoDb = async (req, res) => {
+
+    const request = require('request');
+
+    const url = `https://apiv2.apifootball.com/?action=get_teams&league_id=148&APIkey=${token}`;
+    const response = await request(url);
+    res.send(response);
 }

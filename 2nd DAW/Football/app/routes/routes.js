@@ -4,4 +4,6 @@ module.exports = (app) => {
 
     app.get('/createDB', Football.createDB);
 
+    app.get('/insertIntoDB', Football.insertIntoDb);
+
 }
