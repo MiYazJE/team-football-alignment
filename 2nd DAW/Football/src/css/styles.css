@@ -65,3 +65,12 @@ body {
 .mensaje {
     text-align: center;
 }
+
+.cuadrao {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    background: blue;
+}

@@ -4,6 +4,38 @@ const teams = new Map();
 let teamSelected;
 let jugadores;
 
+const dragOver = (e) => e.preventDefault(); 
+
+const dragDrop = (e) => {
+
+    if (e.target.ondrop == null) return;
+
+    e.preventDefault();
+    
+    let id = e.dataTransfer.getData('text');
+    const jugador = document.getElementById(id);
+    e.target.appendChild(jugador)
+} 
+
+const dragStart = (e) => e.dataTransfer.setData('text', e.target.id);
+
+const eventosDrag = () => {
+
+    const cuadrao = document.querySelector('.cuadrao');
+    const wrapJugadores = document.querySelector('#jugadores');
+    const cajasJugadores = document.querySelectorAll('.jugador');
+
+    wrapJugadores.ondragover = dragOver;
+    wrapJugadores.ondrop     = dragDrop;
+
+    cuadrao.ondrop      = dragDrop;
+    cuadrao.ondragover  = dragOver;
+
+    cajasJugadores.forEach(cajaJugador => {
+        cajaJugador.ondragstart = dragStart;
+    })
+}
+
 const getValue = (posicion) => {
     switch (posicion) {
         case 'Goalkeepers': return 1;
@@ -33,7 +65,7 @@ const cargarInfoEquipo = () => {
 
     for (let jugador of jugadores) {
         html += `
-            <div class="jugador">
+            <div draggable="true" id="${jugador._idjugador}" class="jugador">
                 <p class="nombreJugador">Nombre: ${jugador.nombre}</p>
                 <p class="posicion">Posición: ${traducirPosicion(jugador.posicion)}</p>
                 <p class="nacionalidad">Nacionalidad: ${jugador.nacionalidad}</p>
@@ -42,10 +74,12 @@ const cargarInfoEquipo = () => {
     }
 
     divJugadores.innerHTML = html;
+
+    eventosDrag();
 }
 
 const cargarJugadores = async () => {
-    
+
     const select = document.querySelector('.selectTeam');
     let idTeam = select.options[select.selectedIndex].value;
     teamSelected = teams.get(idTeam);
