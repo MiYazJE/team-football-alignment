@@ -2,12 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Football = require('../controllers/football.controller');
 
-router.get('/api/:team', (req, res) => {
+router.get('/allTeams',  Football.getAllTeamsName);
 
-    console.log(req)
-
-    Football.getPlayersFromIdTeam(req, res);
-    
-});
+router.get('/:idTeam', Football.getPlayersFromIdTeam);
 
 module.exports = router;

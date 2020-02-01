@@ -6,7 +6,7 @@
 
 body {
     height: 100vh;
-    padding: 10px;
+    padding: 20px;
     overflow: hidden;
 }
 
@@ -20,13 +20,48 @@ body {
 #campo {
     background: url('../imgs/campo.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
-    min-width: 450px;
-    min-height: 100%;
+    background-position: center;
+    height: 100%;
+    min-width: 60%;
 }
 
 #jugadores {
-    width: 300px;
+    min-width: 30%;
     height: 100%;
     background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    overflow: scroll;
+}
+
+.nombreEquipo {
+    border-bottom: 1px solid black;
+    border-radius: 30px;
+}
+.nombreEquipo h1 {
+    text-align: center;
+}
+
+.jugador {
+    border-radius: 20px;
+    border: 1px solid black;
+    display: flex;
+    padding: 3px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 8px;
+}
+
+.selectTeam {
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    transform: translate(-30%, -5%);
+}
+
+.mensaje {
+    text-align: center;
 }

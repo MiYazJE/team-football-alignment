@@ -1,17 +1,17 @@
 
-const SERVER_API = 'http://localhost/api/';
+const SERVER_API = '/api/';
 
 export default class HTTP {
 
     // Función dinámica para todas las peticiones get
-    static get = async (keyParam, valueParam) => {
-
-        let url = new URL(SERVER_API);
-        url.searchParams.append(keyParam, valueParam);
-
-        console.log(url.toString())
-        const res  = await fetch(url);
-
+    static get = async (param) => {
+        let url = SERVER_API + '' + param;
+        const res = await fetch(url);
+        return res;
     }
+
+    static getTeams = async () => await ((await fetch(`${SERVER_API}allTeams`)).json());
+
+    static getJugadores = async (idTeam) => await ((await fetch(`${SERVER_API}${idTeam}`)).json());
 
 }
