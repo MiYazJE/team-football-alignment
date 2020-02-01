@@ -2,7 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Football = require('../controllers/football.controller');
 
-router.get('/createDB', Football.createDB);
-router.get('/insertIntoDB', Football.insertIntoDb);
+router.get('/api/:team', (req, res) => {
+
+    console.log(req)
+
+    Football.getPlayersFromIdTeam(req, res);
+    
+});
 
 module.exports = router;

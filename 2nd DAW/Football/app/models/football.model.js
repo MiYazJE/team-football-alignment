@@ -29,8 +29,6 @@ module.exports.getConnect = () => {
     const mysql = require('mysql');
     const dbConfig = require('../config/dbConfig.config');
 
-    console.log(dbConfig);
-
     // MYSQL CONNECTION
     const connection = mysql.createConnection(dbConfig);
 
